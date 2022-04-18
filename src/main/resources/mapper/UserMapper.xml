@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ycj.mall.mapper.UserMapper">
+    <!--    自定义规则：resultMap标签来完成映射规则的定义, 主要用于当数据库中的字段与传递字段有差异时处理-->
+<!--    <resultMap id="UserEntityMap" type="com.ycj.mall.entity.User">-->
+<!--        &lt;!&ndash;主键不能省略&ndash;&gt;-->
+<!--        <id column="uid" property="uid"></id>-->
+<!--        <result column="is_delete" property="isDelete"></result>-->
+<!--        <result column="created_user" property="createdUser"></result>-->
+<!--        <result column="created_time" property="createdTime"></result>-->
+<!--        <result column="modified_user" property="modifiedUser"></result>-->
+<!--        <result column="modified_time" property="modifiedTime"></result>-->
+<!--    </resultMap>-->
+
+    <!--
+        注解：其实不用开启都可以，只要数据库中默认开启自增就可以了。
+        useGeneratedKeys属性：表示开启某个字段的值递增（主键设置为递增）
+        keyProperty属性：标签将表中的哪个字段作为主键进行递增
+    -->
+    <insert id="createUser" parameterType="com.ycj.mall.entity.User" useGeneratedKeys="true" keyProperty="uid">
+        INSERT INTO `shopping-data`.t_user(
+           uid, username, password, salt, phone, email, gender, avatar, is_delete, created_user, created_time, modified_user, modified_time
+        ) VALUES (
+           #{uid}, #{username}, #{password}, #{salt}, #{phone}, #{email}, #{gender}, #{avatar}, #{isDelete}, #{createdUser},
+           #{createdTime}, #{modifiedUser}, #{modifiedTime}
+        )
+    </insert>
+
+    <select id="findByUsername" resultType="com.ycj.mall.entity.User">
+        SELECT * FROM `shopping-data`.t_user where username=#{username}
+    </select>
+</mapper>
