@@ -1,6 +1,7 @@
 package com.ycj.mall.service;
 
 import com.ycj.mall.entity.User;
+import com.ycj.mall.service.ex.ServiceException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,15 @@ public class UserServiceTests {
 
     @Test
     public void registerUser() {
-//        try {
+        try {
             User user = new User();
             user.setUsername("xiaoyang01");
             user.setPassword("123");
             iUserService.registerUser(user);
             System.out.println("OK");
-//        } catch (SerialException e) {
-//            System.out.println(e.getClass().getSimpleName());
-//            System.out.println(e.getMessage());
-//        }
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
     }
 }
