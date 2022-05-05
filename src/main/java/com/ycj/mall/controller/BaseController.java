@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 // 控制类的基类
 public class BaseController {
-    public static final int OK = 200;
+    public static final int OK = 0;
 
     // 请求处理方法，这个方法的返回值就是需要传递给前端的数据
     // 自动将异常对象传递给此方法的参数列表上
@@ -17,10 +17,10 @@ public class BaseController {
     public JsonResult<Void> handleException(Throwable e) {
         JsonResult<Void> result = new JsonResult<>();
         if (e instanceof UsernameDuplicatedException) {
-            result.setState(4000);
+            result.setCode(4000);
             result.setMessage("用户名被占用");
         } else if (e instanceof InsertException) {
-            result.setState(5000);
+            result.setCode(5000);
             result.setMessage("注册时产生未知的异常");
         }
         return result;

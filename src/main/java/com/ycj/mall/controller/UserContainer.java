@@ -7,6 +7,7 @@ import com.ycj.mall.service.ex.UsernameDuplicatedException;
 import com.ycj.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,7 @@ public class UserContainer extends BaseController {
 //        return result;
 //    }
     @RequestMapping("register")
+//    @CrossOrigin()
     public JsonResult<Void> register(User user) {
         iUserService.registerUser(user);
         return new JsonResult<>(OK);

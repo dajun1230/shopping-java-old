@@ -4,32 +4,32 @@ import java.io.Serializable;
 
 // Json格式的数据进行响应
 public class JsonResult<E> implements Serializable {
-    private Integer state;
+    private Integer code;
     private String message;
     private E data;
 
     public JsonResult() {
     }
 
-    public JsonResult(Integer state) {
-        this.state = state;
+    public JsonResult(Integer code) {
+        this.code = code;
     }
 
     public JsonResult(Throwable e) {
         this.message = e.getMessage();
     }
 
-    public JsonResult(Integer state, E data) {
-        this.state = state;
+    public JsonResult(Integer code, E data) {
+        this.code = code;
         this.data = data;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public String getMessage() {

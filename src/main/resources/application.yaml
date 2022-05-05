@@ -1,14 +1,16 @@
-# mysql
+server:
+  port: 9002 # 将默认端口 8080 更改为 9002
+  servlet:
+    context-path: /api # 给所有的接口增加 /api 前缀
+
 spring:
-  datasource:
+  datasource: # mysql配置
     url: jdbc:mysql://47.108.167.244:3306/shopping-data?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-# mybatis
-mybatis:
-  configuration:
-    # 开启下划线自动转驼峰命名
-    map-underscore-to-camel-case: true
+mybatis: # mybatis配置
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # 开启下划线自动转驼峰命名
