@@ -1,4 +1,4 @@
-package com.ycj.mall.util;
+package com.ycj.mall.utils;
 
 import java.io.Serializable;
 

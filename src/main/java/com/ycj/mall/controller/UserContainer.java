@@ -2,15 +2,9 @@ package com.ycj.mall.controller;
 
 import com.ycj.mall.entity.User;
 import com.ycj.mall.service.IUserService;
-import com.ycj.mall.service.ex.InsertException;
-import com.ycj.mall.service.ex.UsernameDuplicatedException;
-import com.ycj.mall.util.JsonResult;
+import com.ycj.mall.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 //@Controller
 @RestController // 组合注解： @Container + @RequestBody
@@ -42,4 +36,11 @@ public class UserContainer extends BaseController {
         iUserService.registerUser(user);
         return new JsonResult<>(OK);
     }
+
+    @PostMapping("login")
+    public JsonResult<User> login(String username, String password) {
+        User data = iUserService.login(username, password);
+        return new JsonResult<User>(OK, data);
+    }
+
 }

@@ -3,7 +3,7 @@ package com.ycj.mall.controller;
 import com.ycj.mall.service.ex.InsertException;
 import com.ycj.mall.service.ex.ServiceException;
 import com.ycj.mall.service.ex.UsernameDuplicatedException;
-import com.ycj.mall.util.JsonResult;
+import com.ycj.mall.utils.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 // 控制类的基类

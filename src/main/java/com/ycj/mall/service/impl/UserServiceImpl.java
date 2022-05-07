@@ -48,6 +48,38 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    @Override
+    public User login(String username, String password) {
+        User result = userMapper.findByUsername(username);
+        if (result == null) {
+            throw new UsernameDuplicatedException("用户数据不存在");
+        }
+        // 监测用户的密码是否匹配
+        // 1. 先获取到数据库中的加密之后的密码
+        String oldPassword = result.getPassword();
+        // 2. 和用户的传递过来的密码进行比较
+        // 2.1 先获取盐值：上一次在注册时所自动生成的盐值
+        String salt = result.getSalt();
+        // 2.2 将用户的密码按照相同的md5算法的规则进行加密
+        String newPassword = getMD5Password(password, salt);
+        // 3. 将密码进行比较
+        if (!newPassword.equals(oldPassword)) {
+            throw new UsernameDuplicatedException("用户密码错误");
+        }
+        // 判断is_delete字段的值是否为1表示被标记为删除
+        if (result.getIsDelete() == 1) {
+            throw new UsernameDuplicatedException("用户数据不存在");
+        }
+
+        User user = new User();
+        user.setUid(result.getUid());
+        user.setUsername(result.getUsername());
+        user.setEmail(result.getEmail());
+        user.setAvatar(result.getAvatar());
+
+        return user;
+    }
+
     //    定义一个md5算法的加密处理
     private String getMD5Password(String password, String salt) {
         for (int i = 0; i < 3; i++) {
