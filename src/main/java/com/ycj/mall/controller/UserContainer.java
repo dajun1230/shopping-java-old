@@ -2,7 +2,7 @@ package com.ycj.mall.controller;
 
 import com.ycj.mall.entity.User;
 import com.ycj.mall.service.IUserService;
-import com.ycj.mall.utils.JsonResult;
+import com.ycj.mall.common.lang.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,15 +32,15 @@ public class UserContainer extends BaseController {
 //    }
     @RequestMapping("register")
 //    @CrossOrigin()
-    public JsonResult<Void> register(User user) {
+    public Result<Void> register(User user) {
         iUserService.registerUser(user);
-        return new JsonResult<>(OK);
+        return new Result<>(OK);
     }
 
     @PostMapping("login")
-    public JsonResult<User> login(String username, String password) {
+    public Result<User> login(String username, String password) {
         User data = iUserService.login(username, password);
-        return new JsonResult<User>(OK, data);
+        return new Result<User>(OK, data);
     }
 
 }
