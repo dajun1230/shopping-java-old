@@ -9,11 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShoppingJavaApplication {
 
     public static void main(String[] args) {
-        try {
-            SpringApplication.run(ShoppingJavaApplication.class, args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SpringApplication.run(ShoppingJavaApplication.class, args);
     }
 
 }

@@ -27,7 +27,7 @@ public class Result<E> implements Serializable {
     public static Result succ(Object data) {
         Result result = new Result();
         result.setCode(200);
-        result.setMessage("");
+        result.setMsg("");
         result.setData(data);
         return result;
     }
@@ -35,8 +35,23 @@ public class Result<E> implements Serializable {
     public static Result succ(Integer code, String msg, Object data) {
         Result result = new Result();
         result.setCode(code);
-        result.setMessage(msg);
+        result.setMsg(msg);
         result.setData(data);
+        return result;
+    }
+
+    public static Result fail(Integer code, String msg, Object data) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        result.setData(data);
+        return result;
+    }
+
+    public static Result fail(String msg) {
+        Result result = new Result();
+        result.setCode(400);
+        result.setMsg(msg);
         return result;
     }
 
@@ -48,12 +63,12 @@ public class Result<E> implements Serializable {
         this.code = code;
     }
 
-    public String getMessage() {
+    public String getMsg() {
         return msg;
     }
 
-    public void setMessage(String message) {
-        this.msg = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public E getData() {

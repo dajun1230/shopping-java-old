@@ -51,7 +51,9 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User login(String username, String password) {
         User result = userMapper.findByUsername(username);
+        System.out.println("result" + result);
         if (result == null) {
+            // todo
             throw new UsernameDuplicatedException("用户数据不存在");
         }
         // 监测用户的密码是否匹配
@@ -64,10 +66,12 @@ public class UserServiceImpl implements IUserService {
         String newPassword = getMD5Password(password, salt);
         // 3. 将密码进行比较
         if (!newPassword.equals(oldPassword)) {
+            // todo
             throw new UsernameDuplicatedException("用户密码错误");
         }
         // 判断is_delete字段的值是否为1表示被标记为删除
         if (result.getIsDelete() == 1) {
+            // todo
             throw new UsernameDuplicatedException("用户数据不存在");
         }
 

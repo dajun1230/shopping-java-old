@@ -6,6 +6,15 @@ docker run -d --name shopping-data \
 -v /Users/xiaoyang/Documents//shopping-mall/shopping-data:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=123456 \
 mysql:5.7
+
+# 进入mysql容器 （容器名：shopping-data）
+docker exec -it shopping-data bash
+
+# 进入mysql (用户名：root 密码：123456)
+mysql -uroot -p123456
+
+# 退出
+exit
 ```
 ### 表
 ```mysql

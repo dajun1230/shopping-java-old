@@ -38,7 +38,9 @@ public class UserContainer extends BaseController {
     }
 
     @PostMapping("login")
-    public Result<User> login(String username, String password) {
+    public Result<User> login(@RequestBody User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
         User data = iUserService.login(username, password);
         return new Result<User>(OK, data);
     }

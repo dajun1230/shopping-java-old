@@ -24,10 +24,10 @@ public class BaseController {
         Result<Void> result = new Result<>();
         if (e instanceof UsernameDuplicatedException) {
             result.setCode(4000);
-            result.setMessage("用户名被占用");
+            result.setMsg("用户名被占用");
         } else if (e instanceof InsertException) {
             result.setCode(5000);
-            result.setMessage("注册时产生未知的异常");
+            result.setMsg("注册时产生未知的异常");
         }
         return result;
     }
